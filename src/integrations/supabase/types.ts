@@ -14,7 +14,98 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          image_url: string | null
+          name: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          name: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          name?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          base_price: number
+          category_id: string | null
+          created_at: string
+          description: string | null
+          design_fee: number
+          id: string
+          images: Json | null
+          is_active: boolean
+          is_customizable: boolean
+          name: string
+          pricing_slabs: Json | null
+          slug: string
+          stock: number
+          updated_at: string
+          variant_matrix: Json | null
+        }
+        Insert: {
+          base_price?: number
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          design_fee?: number
+          id?: string
+          images?: Json | null
+          is_active?: boolean
+          is_customizable?: boolean
+          name: string
+          pricing_slabs?: Json | null
+          slug: string
+          stock?: number
+          updated_at?: string
+          variant_matrix?: Json | null
+        }
+        Update: {
+          base_price?: number
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          design_fee?: number
+          id?: string
+          images?: Json | null
+          is_active?: boolean
+          is_customizable?: boolean
+          name?: string
+          pricing_slabs?: Json | null
+          slug?: string
+          stock?: number
+          updated_at?: string
+          variant_matrix?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
