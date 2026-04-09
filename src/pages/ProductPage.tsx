@@ -63,7 +63,7 @@ const ProductPage = () => {
 
   const images = product.images as string[] | null;
   const slabs = product.pricing_slabs as unknown as PricingSlab[] | null;
-  const variants = product.variant_matrix as VariantMatrix | null;
+  const variants = product.variant_matrix as unknown as VariantMatrix | null;
   const imgUrl = images?.[0] || "/placeholder.svg";
 
   const getCurrentPrice = () => {

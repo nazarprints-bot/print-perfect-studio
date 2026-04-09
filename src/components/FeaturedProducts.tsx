@@ -50,7 +50,7 @@ const FeaturedProducts = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {products?.map((product) => {
           const images = product.images as string[] | null;
-          const slabs = product.pricing_slabs as PricingSlab[] | null;
+          const slabs = product.pricing_slabs as unknown as PricingSlab[] | null;
           const hasBulk = slabs && slabs.length > 1;
           const imgUrl = images?.[0] || "/placeholder.svg";
 
