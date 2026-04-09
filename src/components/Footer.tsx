@@ -41,8 +41,8 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-background mb-3">Contact</h4>
             <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +91 98765 43210</li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> info@printshop.in</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +91 89629 30650</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> nazarprints@gmail.com</li>
               <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Kishanganj, Bihar</li>
             </ul>
           </div>
