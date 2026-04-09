@@ -1,11 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Search, ShoppingCart, User, Menu, X, LogOut, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const { user, signOut } = useAuth();
+  const { totalItems } = useCart();
+  const navigate = useNavigate();
 
   const categories = [
     { name: "Business Cards", slug: "business-cards" },
@@ -15,6 +27,11 @@ const Navbar = () => {
     { name: "Mugs", slug: "mugs" },
     { name: "Stickers", slug: "stickers-labels" },
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-card/80 backdrop-blur-xl border-b animate-fade-in">
@@ -41,13 +58,44 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-1">
-            <Button variant="ghost" size="icon" className="rounded-xl relative hover:scale-105 transition-transform duration-200">
-              <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-primary text-primary-foreground text-[10px] rounded-full flex items-center justify-center font-bold animate-scale-in">0</span>
+            <Button variant="ghost" size="icon" className="rounded-xl relative hover:scale-105 transition-transform duration-200" asChild>
+              <Link to="/cart">
+                <ShoppingCart className="h-5 w-5" />
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-primary text-primary-foreground text-[10px] rounded-full flex items-center justify-center font-bold animate-scale-in">
+                  {totalItems}
+                </span>
+              </Link>
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-xl hover:scale-105 transition-transform duration-200">
-              <User className="h-5 w-5" />
-            </Button>
+
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="rounded-xl hover:scale-105 transition-transform duration-200">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <User className="h-4 w-4 text-primary" />
+                    </div>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48 rounded-xl">
+                  <DropdownMenuItem className="text-xs text-muted-foreground cursor-default">
+                    {user.email}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate("/orders")} className="cursor-pointer">
+                    <Package className="mr-2 h-4 w-4" /> My Orders
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                    <LogOut className="mr-2 h-4 w-4" /> Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="ghost" size="sm" className="rounded-xl" asChild>
+                <Link to="/auth">Sign In</Link>
+              </Button>
+            )}
+
             <Button
               variant="ghost"
               size="icon"
