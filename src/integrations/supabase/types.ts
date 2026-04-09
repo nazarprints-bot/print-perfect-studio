@@ -14,6 +14,53 @@ export type Database = {
   }
   public: {
     Tables: {
+      cart_items: {
+        Row: {
+          created_at: string
+          customization_data: Json | null
+          id: string
+          product_id: string
+          quantity: number
+          quantity_breakdown: Json | null
+          selected_color: string | null
+          selected_size: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          customization_data?: Json | null
+          id?: string
+          product_id: string
+          quantity?: number
+          quantity_breakdown?: Json | null
+          selected_color?: string | null
+          selected_size?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          customization_data?: Json | null
+          id?: string
+          product_id?: string
+          quantity?: number
+          quantity_breakdown?: Json | null
+          selected_color?: string | null
+          selected_size?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cart_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       categories: {
         Row: {
           created_at: string
@@ -41,6 +88,102 @@ export type Database = {
           name?: string
           slug?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      coupons: {
+        Row: {
+          code: string
+          created_at: string
+          current_uses: number
+          discount_type: string
+          discount_value: number
+          end_date: string | null
+          id: string
+          is_active: boolean
+          max_uses: number | null
+          min_order_amount: number
+          start_date: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          current_uses?: number
+          discount_type: string
+          discount_value?: number
+          end_date?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          min_order_amount?: number
+          start_date?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          current_uses?: number
+          discount_type?: string
+          discount_value?: number
+          end_date?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          min_order_amount?: number
+          start_date?: string | null
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          coupon_code: string | null
+          created_at: string
+          design_fee_total: number
+          discount_amount: number
+          id: string
+          items_snapshot: Json
+          payment_id: string | null
+          payment_status: string
+          shipping_address: Json | null
+          status: string
+          total_amount: number
+          tracking_history: Json | null
+          updated_at: string
+          user_id: string | null
+          whatsapp_notified: boolean
+        }
+        Insert: {
+          coupon_code?: string | null
+          created_at?: string
+          design_fee_total?: number
+          discount_amount?: number
+          id?: string
+          items_snapshot?: Json
+          payment_id?: string | null
+          payment_status?: string
+          shipping_address?: Json | null
+          status?: string
+          total_amount?: number
+          tracking_history?: Json | null
+          updated_at?: string
+          user_id?: string | null
+          whatsapp_notified?: boolean
+        }
+        Update: {
+          coupon_code?: string | null
+          created_at?: string
+          design_fee_total?: number
+          discount_amount?: number
+          id?: string
+          items_snapshot?: Json
+          payment_id?: string | null
+          payment_status?: string
+          shipping_address?: Json | null
+          status?: string
+          total_amount?: number
+          tracking_history?: Json | null
+          updated_at?: string
+          user_id?: string | null
+          whatsapp_notified?: boolean
         }
         Relationships: []
       }
@@ -105,6 +248,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+          phone: string | null
+          saved_addresses: Json | null
+          updated_at: string
+          user_id: string
+          whatsapp_notifications: boolean
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          phone?: string | null
+          saved_addresses?: Json | null
+          updated_at?: string
+          user_id: string
+          whatsapp_notifications?: boolean
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          phone?: string | null
+          saved_addresses?: Json | null
+          updated_at?: string
+          user_id?: string
+          whatsapp_notifications?: boolean
+        }
+        Relationships: []
       }
     }
     Views: {
