@@ -62,7 +62,7 @@ const ProductPage = () => {
   if (!product) return null;
 
   const images = product.images as string[] | null;
-  const slabs = product.pricing_slabs as PricingSlab[] | null;
+  const slabs = product.pricing_slabs as unknown as PricingSlab[] | null;
   const variants = product.variant_matrix as VariantMatrix | null;
   const imgUrl = images?.[0] || "/placeholder.svg";
 
