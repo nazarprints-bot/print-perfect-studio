@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, ShoppingCart, User, Menu, X, LogOut, Package } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, X, LogOut, Package, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [search, setSearch] = useState("");
   const { user, signOut } = useAuth();
   const { totalItems } = useCart();
+  const { isAdmin } = useAdminCheck();
   const navigate = useNavigate();
 
   const categories = [
@@ -39,9 +41,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-200 shadow-md shadow-primary/20">
-              <span className="text-primary-foreground font-bold text-lg">P</span>
+              <span className="text-primary-foreground font-bold text-lg">N</span>
             </div>
-            <span className="font-bold text-xl text-foreground">PrintShop</span>
+            <span className="font-bold text-xl text-foreground">Naz-Ar</span>
           </Link>
 
           <div className="hidden md:flex flex-1 max-w-md mx-8">
@@ -84,6 +86,11 @@ const Navbar = () => {
                   <DropdownMenuItem onClick={() => navigate("/orders")} className="cursor-pointer">
                     <Package className="mr-2 h-4 w-4" /> My Orders
                   </DropdownMenuItem>
+                  {isAdmin && (
+                    <DropdownMenuItem onClick={() => navigate("/admin")} className="cursor-pointer">
+                      <Shield className="mr-2 h-4 w-4" /> Admin Panel
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
                     <LogOut className="mr-2 h-4 w-4" /> Sign Out
