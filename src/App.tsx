@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import ProductPage from "./pages/ProductPage";
@@ -46,6 +47,7 @@ const App = () => (
               <Route path="/admin/coupons" element={<AdminCoupons />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <WhatsAppFloat />
           </CartProvider>
         </AuthProvider>
       </BrowserRouter>
