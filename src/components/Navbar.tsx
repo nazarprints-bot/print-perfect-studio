@@ -18,6 +18,7 @@ const Navbar = () => {
   const [search, setSearch] = useState("");
   const { user, signOut } = useAuth();
   const { totalItems } = useCart();
+  const { isAdmin } = useAdminCheck();
   const navigate = useNavigate();
 
   const categories = [
