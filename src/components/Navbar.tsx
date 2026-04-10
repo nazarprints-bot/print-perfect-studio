@@ -39,9 +39,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-200 shadow-md shadow-primary/20">
-              <span className="text-primary-foreground font-bold text-lg">P</span>
+              <span className="text-primary-foreground font-bold text-lg">N</span>
             </div>
-            <span className="font-bold text-xl text-foreground">PrintShop</span>
+            <span className="font-bold text-xl text-foreground">Naz-Ar</span>
           </Link>
 
           <div className="hidden md:flex flex-1 max-w-md mx-8">

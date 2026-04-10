@@ -9,9 +9,9 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">P</span>
+                <span className="text-primary-foreground font-bold">N</span>
               </div>
-              <span className="font-bold text-lg text-background">PrintShop</span>
+              <span className="font-bold text-lg text-background">Naz-Ar PRINTS & SERVICES</span>
             </div>
             <p className="text-sm text-background/60">
               Premium printing solutions delivered to your door. Quality prints at affordable prices.
@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/10 mt-8 pt-6 text-center text-sm text-background/40">
-          © {new Date().getFullYear()} PrintShop. All rights reserved.
+          © {new Date().getFullYear()} Naz-Ar PRINTS & SERVICES. All rights reserved.
         </div>
       </div>
     </footer>
